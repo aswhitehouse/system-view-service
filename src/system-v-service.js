@@ -11,9 +11,9 @@ app.get('/', (req, res) => {
         if(err) throw err;
         let reg = /\n/;
         let rawValues = data.split('x-corr-id:');
-        let values = {};
-        for(let i = 1; i < rawValues.length; i++) {
-            values['id'+i] = rawValues[i].replace(reg, '');
+        let values = {elements:[]};
+        for(let i = 0; i < rawValues.length; i++) {
+            values.elements[i] = rawValues[i].replace(reg, '');
         }
         res.send(JSON.stringify(values));
     })
